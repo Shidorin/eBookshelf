@@ -6,11 +6,11 @@ frontend:
 
  [X] Navbar
  
- [] Home
+ -[] Home
 
- [] Books
+ -[] Books
 
- [] Book list
+ - [] Book list
 
  [] Profile
 
