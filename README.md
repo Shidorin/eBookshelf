@@ -3,17 +3,19 @@
 
 frontend:
 
-- [X] Navbar
 
-- [] Home
+ [X] Navbar
+ 
+ [] Home
 
-- [] Books
+ [] Books
 
-- [] Book list
+ [] Book list
 
-- [] Profile
+ [] Profile
 
-- [] connection backend
+ [] backend connection
+
 
 backend:
 
