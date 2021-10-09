@@ -4,13 +4,13 @@
 frontend:
 
 
- [X] Navbar
+ - [X] Navbar
  
  -[] Home
 
  -[] Books
 
- - [] Book list
+ -  [] Book list
 
  [] Profile
 
