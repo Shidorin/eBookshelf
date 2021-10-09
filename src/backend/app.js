@@ -7,7 +7,29 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+
+
+
+
+console.log("log: test app.js")
+
+
+
+
+
+
+
 var app = express();
+const port = 8080
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

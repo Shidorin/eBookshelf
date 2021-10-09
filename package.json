@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@mui/material": "^5.0.2",
     "backend": "file:src/backend",
-    "frontend": "file:src/frontend"
+    "frontend": "file:src/frontend",
+    "pg": "^8.7.1"
   }
 }

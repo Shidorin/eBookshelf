@@ -5,8 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
-        
-        {
+                {
             "type": "node",
             "request": "launch",
             "name": "Start Backend",
@@ -16,6 +15,7 @@
             "cwd": "${workspaceFolder}/src/backend",
             "runtimeExecutable": "npx",
             "runtimeArgs": [
+                "nodemon",
                 "app.js"
             ],
             "outputCapture": "std",
