@@ -17,10 +17,18 @@ frontend:
  [] backend connection
 
 
+- [x] Navbar
+- [ ] Home
+- [ ] Books
+- [ ] Book list
+- [ ] Profile
+- [ ] backend connection
+
+
 backend:
 
- [] Login
+- [ ] Login
 
- [] Session
+- [ ] Session
 
- [] Api
+- [ ] Api
