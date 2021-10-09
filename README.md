@@ -3,20 +3,6 @@
 
 frontend:
 
-
- - [X] Navbar
- 
- -[] Home
-
- -[] Books
-
- -  [] Book list
-
- [] Profile
-
- [] backend connection
-
-
 - [x] Navbar
 - [ ] Home
 - [ ] Books
@@ -28,7 +14,5 @@ frontend:
 backend:
 
 - [ ] Login
-
 - [ ] Session
-
 - [ ] Api
