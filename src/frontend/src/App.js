@@ -1,13 +1,18 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import BookList from './components/BookList/BookList';
+
+//import Navbar from './components/Navbar/Navbar';
+//import BookList from './components/BookList/BookList';
+
+
+
 
 function App() {
+
   return (
-    
-    <div className="App">
-      <Navbar/>
-    </div>
-  );
+    //<Navbar />
+    <BookList/>
+  )
 }
 
 export default App;

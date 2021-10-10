@@ -8,7 +8,7 @@ frontend:
 - [ ] Books
 - [ ] Book list
 - [ ] Profile
-- [ ] backend connection
+- [x] backend connection
 
 
 backend:

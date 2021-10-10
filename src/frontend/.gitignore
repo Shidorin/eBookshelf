@@ -7,7 +7,7 @@
 /node_modules
 # testing
 /coverage
-
+/public/jahy192.png
 # production
 /build
 
