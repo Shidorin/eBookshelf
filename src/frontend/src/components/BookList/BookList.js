@@ -1,5 +1,6 @@
 import React from "react";
 import './BookList.css'
+import { Link } from 'react-router-dom'
 class BookList extends React.Component {
 
     constructor(props) {
@@ -11,6 +12,7 @@ class BookList extends React.Component {
         }
     }
 
+    /* pulling book data from database */
     componentDidMount() {
         fetch('http://localhost:8080/books', {
             credentials: 'include'
@@ -28,23 +30,54 @@ class BookList extends React.Component {
             })
     }
 
+    myfunction(id) {
+
+        console.log("klik" + id)
+
+    }
 
     generate(books) {
         var tab = []
-        var count = 0
-        console.log(books)
         for (const book of books) {
-            console.log(count)
-            count++
-            console.log(book.id)
             tab.push(
-                <div>
-                    <div className="row">
+                <div key={book.id}>
+                    
+                    <div className="row" >
+                        
+                            
+
+                            
+                            
+                        <Link to={'/book/' + book.id + '/' + book.title}> 
+                       
                         <h5>ID: {book.id}</h5>
+                        </Link>
+                        
+                        
+                        <button onClick={() => this.myfunction(book.id)}>klik</button>
                     </div>
+                   
+
+
                     <div className="row">
                         <h5>Title: {book.title}</h5>
                     </div>
+                    <div className="row">
+                        <h5>Description: {book.description}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Release date: {book.release_date}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Relation id: {book.relation_id}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Author id: {book.author_id}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Genre: {book.genre}</h5>
+                    </div>
+                    <br />
                 </div >
             )
         }
@@ -52,9 +85,8 @@ class BookList extends React.Component {
     }
 
     render() {
-        const { isLoaded } = this.state
-        if (!isLoaded) return <div><h1>error fetching data</h1></div>
-        //console.log(this.state.books)
+        //const { isLoaded } = this.state
+        //if (!isLoaded) return <div><h1>error fetching data</h1></div>
         return (
             this.generate(this.state.books)
         )
