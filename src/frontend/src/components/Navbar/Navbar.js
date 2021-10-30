@@ -22,23 +22,20 @@ class Navbar extends React.Component {
 
                 <h1 className="navbar-logo">
                     TEST
-                    <i className="fab fa-react">
-
-                    </i>
                 </h1>
 
-                <div className="menu-icon" onClick={this.handleClick}>
+                {/* <div className="menu-icon" onClick={this.handleClick}>
 
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
 
-                </div>
+                </div> */}
 
 
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                     {MenuItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <Link className={item.cName} to={'/'+item.url}>{item.title}</Link>
+                                <Link className={item.cName} to={'/' + item.url}>{item.title}</Link>
                                 {/*<a className={item.cName} href={item.url} onClick={this.klik}>
                                 </a>*/}
                             </li>

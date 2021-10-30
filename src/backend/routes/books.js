@@ -1,15 +1,22 @@
 const express = require('express')
 var router = express.Router()
-const connection = require('../modules/database').con
+const db = require('../modules/database')
+const Book = require('../models/Books')
 
+//send book
 router.get('/', (req, res) => {
-
-    connection.query('SELECT * FROM books', (err,result)=> {
-        if (err) throw err
-
-        res.send(result)
+    Book.findAll()
+    .then(book => {
+        //console.log(books)
+        //res.sendStatus(200)
+        res.send(book)
         return
     })
+    .catch(err=>console.log(err))
+    //db.query('SELECT * FROM books', (err,result)=> {
+    //    if (err) throw err
+//
+    //})
 })
 
 

@@ -4,43 +4,45 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 const cors = require('cors')
-
 const port = 8080
-
 var app = express();
 
+//Database
+const db = require('./modules/database')
 
-const database = require('./modules/database')
+db.authenticate()
+  .then(() => console.log('database connected'))
+  .catch(err => console.log('Error ' + err))
+
+
 const bodyParser = require('body-parser')
-
 app.use(bodyParser.json())
 app.use(cors({
   origin: [
-      'http://127.0.0.1:3000',
-      'http://localhost:3000' 
+    'http://127.0.0.1:3000',
+    'http://localhost:3000'
   ],
   credentials: true
 }))
-console.log("log: test app.js")
 
 
 var books = require('./routes/books')
 app.use('/books', books.router)
 
+var bookEntity = require('./routes/bookEntity')
+app.use('/bookEntity', bookEntity.router)
 
-
-
-
+var login = require('./routes/login')
+app.use('/login', login.router)
 
 
 app.get('/', (req, res) => {
-  res.send( 'Hello!' )
+  //res.send('Hello!')
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  //console.log(`Example app listening at http://localhost:${port}`)
 })
 
 //// view engine setup

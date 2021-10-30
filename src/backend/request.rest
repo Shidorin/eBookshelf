@@ -1,0 +1,10 @@
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "login": "test_user",
+    "password": "test_password"
+}
+
+###
+GET http://localhost:8080/books

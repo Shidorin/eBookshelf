@@ -16,7 +16,8 @@
             "runtimeExecutable": "npx",
             "runtimeArgs": [
                 "nodemon",
-                "app.js"
+                "app.js",
+                
             ],
             "outputCapture": "std",
         },
