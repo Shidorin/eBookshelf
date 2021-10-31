@@ -15,8 +15,7 @@ router.get('/:id/:title', (req, res) => {
         where: {
             id: req.params.id,
         }
-    }
-    )
+    })
         .then(book => {
             //console.log(book)
             //res.sendStatus(200)

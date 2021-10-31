@@ -7,17 +7,16 @@ class LoginForm extends React.Component {
         super(props)
 
         this.state = {
-            login: 'test',
+            username: 'test',
             password: 'test',
         }
     }
 
     login() {
         var json = JSON.stringify({
-            login: this.state.login,
+            username: this.state.username,
             password: this.state.password,
         })
-
         fetch('http://localhost:8080/login', {
             credentials: 'include',
             method: "POST",
@@ -26,26 +25,19 @@ class LoginForm extends React.Component {
             },
             body: json,
         })
-            .then(response => response.json())
-            .then((jsonData) => {
-                console.log(jsonData)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
 
     }
 
 
     render() {
-        const changeLogin = (event) => this.setState({ login: event.target.value })
-        const changePassword = (event) => this.setState({ login: event.target.value })
+        const changeUsername = (event) => this.setState({ username: event.target.value })
+        const changePassword = (event) => this.setState({ password: event.target.value })
         return (
             <div className='loginForm'>
                 <div><h1>Login</h1></div>
                 <form>
                     <br />
-                    <input type="text" id="loginForm" placeholder="Login" autoComplete="off" onChange={changeLogin}></input>
+                    <input type="text" id="loginForm" placeholder="Login" autoComplete="off" onChange={changeUsername}></input>
                     <br />
                     <br />
                     <br />
