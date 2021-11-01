@@ -1,8 +1,11 @@
 const express = require('express')
 var router = express.Router()
+var jwt = require('jsonwebtoken')
+const config = require('../config/auth')
 const bcrypt = require('bcrypt')
-const db = require('../modules/database')
+const db = require('../config/database')
 const Users = require('../models/Users')
+const { response } = require('../app')
 
 
 router.get('/', function (req, res, next) {
@@ -39,14 +42,23 @@ router.post('/', async (req, res, next) => {
         try {
           if (await bcrypt.compare(req.body.password, user.get('password'))) {
             console.log("OK")
-            res.status(200).send() // OK
+            var token = jwt.sign({ id: user.get('id') }, config.secret, {
+              expiresIn: 86400 // expires in 24 hours
+            })
+            var response = {
+              'username': user.get('username'),
+              'token': token,
+            }
+            res.status(200).send(response) // OK
           } else {
+            console.log("else error")
             res.status(401).send() // Unauthorized
+            return
           }
         } catch {
+          console.log("catch error")
           res.status(401).send() // Unauthorized
         }
-        return
       }
     })
     .catch(err => console.log("err" + err))

@@ -1,6 +1,6 @@
 const express = require('express')
 var router = express.Router()
-const db = require('../modules/database')
+const db = require('../config/database')
 const Book = require('../models/Books')
 
 

@@ -2,8 +2,8 @@ POST http://localhost:8080/login/users
 Content-Type: application/json
 
 {
-    "username": "test_user",
-    "password": "test_password"
+    "username": "1",
+    "password": "1"
 }
 
 ###
@@ -15,6 +15,6 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "username": "test_user",
-    "password": "test_password"
+    "username": "1",
+    "password": "1"
 }

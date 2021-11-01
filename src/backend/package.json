@@ -63,6 +63,7 @@
     "is-promise": "^2.2.2",
     "is-regex": "^1.1.4",
     "js-stringify": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
     "jstransformer": "^1.0.0",
     "kind-of": "^3.2.2",
     "lazy-cache": "^1.0.4",

@@ -12,6 +12,7 @@ frontend:
 - [ ] Profile
 - [x] backend connection
 - [ ] login
+- [ ] fix login redirect
 - [ ] register
 
 backend:

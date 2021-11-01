@@ -32,15 +32,27 @@ class Navbar extends React.Component {
 
 
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                <Link className={item.cName} to={'/' + item.url}>{item.title}</Link>
-                                {/*<a className={item.cName} href={item.url} onClick={this.klik}>
+                    {
+
+
+                        MenuItems.filter((item) => {
+                            if (localStorage.getItem('username')) {
+                                if (item.title === 'Login') return false
+                                if (item.title === 'Sign up') return false
+                            }
+                            else {  if (item.title === 'Log out') return false }
+                            return true
+                        }).map((item, index) => {
+
+
+                            return (
+                                <li key={index}>
+                                    <Link className={item.cName} to={'/' + item.url}>{item.title}</Link>
+                                    {/*<a className={item.cName} href={item.url} onClick={this.klik}>
                                 </a>*/}
-                            </li>
-                        )
-                    })}
+                                </li>
+                            )
+                        })}
                 </ul>
             </nav>
         )

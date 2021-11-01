@@ -1,6 +1,7 @@
 import React from "react";
+import { Redirect } from "react-router";
+import { authenticationService } from "../../services/auth_service";
 import './LoginForm.css'
-
 class LoginForm extends React.Component {
 
     constructor(props) {
@@ -9,25 +10,18 @@ class LoginForm extends React.Component {
         this.state = {
             username: 'test',
             password: 'test',
+            redirect: false
         }
     }
 
-    login() {
-        var json = JSON.stringify({
-            username: this.state.username,
-            password: this.state.password,
-        })
-        fetch('http://localhost:8080/login', {
-            credentials: 'include',
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: json,
-        })
 
+
+
+    redirect() {
+        if(localStorage.getItem('username')){
+            return <Redirect to="/"/>
+        }
     }
-
 
     render() {
         const changeUsername = (event) => this.setState({ username: event.target.value })
@@ -45,7 +39,8 @@ class LoginForm extends React.Component {
                 </form>
                 <br />
                 <br />
-                <button onClick={() => { this.login() }}>Login</button>
+                <button onClick={() => { authenticationService.login(this.state.username, this.state.password) }}>Login</button>
+                {this.redirect()}
             </div>
         )
     }

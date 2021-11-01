@@ -29,4 +29,9 @@ export const MenuItems = [
         url: 'signup',
         cName: 'nav-links'
     },
+    {
+        title: 'Log out',
+        url: 'logout',
+        cName: 'nav-links'
+    }
 ]

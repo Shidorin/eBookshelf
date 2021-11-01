@@ -9,7 +9,7 @@ const port = 8080
 var app = express();
 
 //Database
-const db = require('./modules/database')
+const db = require('./config/database')
 
 db.authenticate()
   .then(() => console.log('database connected'))
