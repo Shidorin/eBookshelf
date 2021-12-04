@@ -1,6 +1,6 @@
 import React from "react";
-import { Redirect } from "react-router";
-import { authenticationService } from "../../services/auth_service";
+import { Redirect } from "react-router-dom";
+//import { authenticationService } from "../../services/auth_service";
 import './LoginForm.css'
 class LoginForm extends React.Component {
 
@@ -15,14 +15,45 @@ class LoginForm extends React.Component {
     }
 
 
+    async Login(username, password) {
+        var json = JSON.stringify({
+            username: username,
+            password: password,
+        })
+        console.log(json)
+        await fetch('http://localhost:8080/login', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json,
+        })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('username', data.username)
+                this.props.history.replace('/home');
+                return true;
+            })
+            .catch((error) => {
+                console.error('Error: ', error)
+                return false
+            });
+        return false
+    }
+
 
 
     redirect() {
-        if(localStorage.getItem('username')){
-            return <Redirect to="/"/>
+        if (localStorage.getItem('username')) {
+            return <Redirect to="/" />
         }
     }
-
+    /**
+     * get login and password values from text forms
+     * on button click sends this values to login function
+     */
     render() {
         const changeUsername = (event) => this.setState({ username: event.target.value })
         const changePassword = (event) => this.setState({ password: event.target.value })
@@ -39,8 +70,7 @@ class LoginForm extends React.Component {
                 </form>
                 <br />
                 <br />
-                <button onClick={() => { authenticationService.login(this.state.username, this.state.password) }}>Login</button>
-                {this.redirect()}
+                <button onClick={() => { this.Login(this.state.username, this.state.password)}}>Login</button>
             </div>
         )
     }

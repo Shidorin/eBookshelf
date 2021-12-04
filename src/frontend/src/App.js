@@ -5,6 +5,7 @@ import BookList from './components/BookList/BookList';
 import Home from './components/Home/Home'
 import BookEntity from './components/BookEntity/BookEntity';
 import LoginForm from './components/LoginForm/LoginForm';
+import Logout from './components/Logout/Logout';
 //import { useState } from 'react';
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/bookList' component={BookList} />
         <Route path='/book/:id/:title' component={BookEntity} />
         <Route path='/login' component={LoginForm} />
+        <Route path='/logout' component={Logout} />
       </Switch>
     </Router>
   )

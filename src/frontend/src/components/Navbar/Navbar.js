@@ -47,7 +47,7 @@ class Navbar extends React.Component {
 
                             return (
                                 <li key={index}>
-                                    <Link className={item.cName} to={'/' + item.url}>{item.title}</Link>
+                                    {<Link className={item.cName} to={'/' + item.url}>{item.title}</Link>}
                                     {/*<a className={item.cName} href={item.url} onClick={this.klik}>
                                 </a>*/}
                                 </li>
