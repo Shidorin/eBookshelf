@@ -36,6 +36,8 @@ app.use('/bookEntity', bookEntity.router)
 var login = require('./routes/login')
 app.use('/login', login.router)
 
+var signup = require('./routes/signup')
+app.use('/signup', signup.router)
 
 app.get('/', (req, res) => {
   //res.send('Hello!')

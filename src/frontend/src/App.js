@@ -6,6 +6,7 @@ import Home from './components/Home/Home'
 import BookEntity from './components/BookEntity/BookEntity';
 import LoginForm from './components/LoginForm/LoginForm';
 import Logout from './components/Logout/Logout';
+import Signup from './components/Signup/Signup';
 //import { useState } from 'react';
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/book/:id/:title' component={BookEntity} />
         <Route path='/login' component={LoginForm} />
         <Route path='/logout' component={Logout} />
+        <Route path='/signup' component={Signup} />
       </Switch>
     </Router>
   )

@@ -5,11 +5,9 @@ const config = require('../config/auth')
 const bcrypt = require('bcrypt')
 const db = require('../config/database')
 const Users = require('../models/Users')
-const { response } = require('../app')
-
 
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+  //res.send('respond with a resource');
 });
 
 
@@ -51,17 +49,17 @@ router.post('/', async (req, res, next) => {
             }
             res.status(200).send(response) // OK
           } else {
-            console.log("else error")
+            console.log("passwords mismatch")
             res.status(401).send() // Unauthorized
             return
           }
         } catch {
-          console.log("catch error")
+          console.log("error in login procedure")
           res.status(401).send() // Unauthorized
         }
       }
     })
-    .catch(err => console.log("err" + err))
+    .catch(err => console.log("couldnt find user" + err))
 
 
 })
