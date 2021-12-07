@@ -1,13 +1,12 @@
 import React from "react";
-import './BookList.css'
+import './Books.css'
 import { Link } from 'react-router-dom'
-class BookList extends React.Component {
+class Books extends React.Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            username: this.props.match.params.username,
             books: [],
             isLoaded: false,
         }
@@ -15,28 +14,26 @@ class BookList extends React.Component {
 
     /* pulling book data from database */
     componentDidMount() {
-        var json = JSON.stringify({
-            username: this.state.username,
-        })
-        console.log(json)
-        fetch('http://localhost:8080/bookList', {
-            credentials: 'include',
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: json,
+        fetch('http://localhost:8080/books', {
+            credentials: 'include'
         })
             .then(response => response.json())
             .then((jsonData) => {
                 this.setState({
                     books: jsonData,
                     isLoaded: true,
-                })
+                }
+                )
             })
             .catch((error) => {
                 console.error(error)
             })
+    }
+
+    myfunction(id) {
+
+        console.log("klik" + id)
+
     }
 
     generate(books) {
@@ -44,20 +41,43 @@ class BookList extends React.Component {
         for (const book of books) {
             tab.push(
                 <div key={book.id}>
+                    
                     <div className="row" >
-                        <Link to={'/book/' + book.id + '/' + book.title}>
-                            <h5>ID: {book.id}</h5>
+                        
+                            
+
+                            
+                            
+                        <Link to={'/book/' + book.id + '/' + book.title}> 
+                       
+                        <h5>ID: {book.id}</h5>
                         </Link>
+                        
+                        
+                        <button onClick={() => this.myfunction(book.id)}>klik</button>
                     </div>
+                   
+
+
                     <div className="row">
                         <h5>Title: {book.title}</h5>
                     </div>
                     <div className="row">
-                        <h5>STAN: </h5>
+                        <h5>Description: {book.description}</h5>
                     </div>
                     <div className="row">
-                        <h5>OCENA:</h5>
+                        <h5>Release date: {book.release_date}</h5>
                     </div>
+                    <div className="row">
+                        <h5>Relation id: {book.relation_id}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Author id: {book.author_id}</h5>
+                    </div>
+                    <div className="row">
+                        <h5>Genre: {book.genre}</h5>
+                    </div>
+                    <br />
                 </div >
             )
         }
@@ -72,4 +92,4 @@ class BookList extends React.Component {
         )
     }
 }
-export default BookList
+export default Books

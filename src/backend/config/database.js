@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize')
 
+
 module.exports = new Sequelize("dbbooklist", "root", "", {
   host: '127.0.0.1',
   dialect: "mariadb",
@@ -7,8 +8,11 @@ module.exports = new Sequelize("dbbooklist", "root", "", {
     timestamps: false,
     createdAt: false,
     updatedAt: false,
+    //freezeTableName: true,
   },
 })
+
+
 
 //const mysql = require('mysql')
 //

@@ -1,24 +1,24 @@
 export const MenuItems = [
     {
-    title: 'Home',
-    url: 'home',
-    cName: 'nav-links'
+        title: 'Home',
+        url: 'home',
+        cName: 'nav-links'
     },
     {
-        title: 'Books',
-        url: '#',
+        title: 'My Books',
+        url: 'user/' + localStorage.getItem('username') + '/booklist',
         cName: 'nav-links'
     },
     {
         title: 'Book List',
-        url: 'bookList',
+        url: 'books',
         cName: 'nav-links'
     },
     {
         title: 'Profile',
         url: '#',
         cName: 'nav-links'
-    }, 
+    },
     {
         title: 'Login',
         url: 'login',

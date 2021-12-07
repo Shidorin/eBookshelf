@@ -18,3 +18,14 @@ Content-Type: application/json
     "username": "1",
     "password": "1"
 }
+
+
+###
+
+POST http://localhost:8080/bookList
+
+Content-Type: application/json
+
+{
+    "username": "1"
+}

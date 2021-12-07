@@ -1,7 +1,7 @@
 const Sequalize = require('sequelize');
 const db = require('../config/database');
 
-const Book = db.define('book', {   
+const Book = db.define('books', {   
     id: {
         type: Sequalize.INTEGER,
         primaryKey: true
@@ -25,5 +25,6 @@ const Book = db.define('book', {
         type: Sequalize.STRING
     },
 })
+
 
 module.exports = Book;

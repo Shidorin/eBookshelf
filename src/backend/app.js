@@ -26,16 +26,19 @@ app.use(cors({
   credentials: true
 }))
 
-
+// at the moment all books information
 var books = require('./routes/books')
 app.use('/books', books.router)
-
+// user related books
+var bookList = require('./routes/bookList')
+app.use('/bookList', bookList.router)
+// one book information
 var bookEntity = require('./routes/bookEntity')
 app.use('/bookEntity', bookEntity.router)
-
+// login
 var login = require('./routes/login')
 app.use('/login', login.router)
-
+// signup
 var signup = require('./routes/signup')
 app.use('/signup', signup.router)
 

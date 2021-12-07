@@ -11,12 +11,12 @@ frontend:
 - [ ] Book list
 - [ ] Profile
 - [x] backend connection
-- [ ] login
-- [ ] fix login redirect
-- [ ] register
+- [x] login
+- [x] fix login redirect
+- [x] signup
 
 backend:
 
-- [ ] Login
-- [ ] Session
+- [x] Login
+- [x] Session
 - [ ] Api
