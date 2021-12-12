@@ -2,6 +2,7 @@
   "dependencies": {
     "@mui/material": "^5.0.2",
     "backend": "file:src/backend",
+    "flexbox-react": "^4.4.0",
     "frontend": "file:src/frontend",
     "pg": "^8.7.1"
   }

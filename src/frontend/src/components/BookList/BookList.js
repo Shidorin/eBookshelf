@@ -39,33 +39,73 @@ class BookList extends React.Component {
             })
     }
 
-    generate(books) {
+    bookLoop(books) {
         var tab = []
         for (const book of books) {
             tab.push(
-                <div key={book.id}>
-                    <div className="row" >
+                <tr>
+                    <td>
                         <Link to={'/book/' + book.id + '/' + book.title}>
                             <h5>ID: {book.id}</h5>
                         </Link>
-                    </div>
-                    <div className="row">
-                        <h5>Title: {book.title}</h5>
-                    </div>
-                    <div className="row">
-                        <h5>STAN: </h5>
-                    </div>
-                    <div className="row">
-                        <h5>OCENA:</h5>
-                    </div>
-                </div >
+                    </td>
+                    <td><h5>Title: {book.title}</h5></td>
+                    <td><h5>Status: {book["users.book-user.status"]}</h5></td>
+                    <td><h5>Score: {book["users.book-user.score"]} </h5></td>
+                </tr>
+
             )
         }
         return tab
     }
 
+    generate(books) {
+        var tab = [
+            <div>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Score</th>
+                    </tr>
+                    {this.bookLoop(books)}
+
+
+                </table>
+            </div >
+        ]
+        return tab
+    }
+    //return (
+    //    <div className="App">
+    //        {books.map(book => {
+    //            console.log(book)
+    //            return (
+    //                <div key={book.id}>
+    //                    <div className="row" >
+    //                        <Link to={'/book/' + book.id + '/' + book.title}>
+    //                            <h5>ID: {book.id}</h5>
+    //                        </Link>
+    //                    </div>
+    //                    <div className="row">
+    //                        <h5>Title: {book.title}</h5>
+    //                    </div>
+    //                    <div className="row">
+    //                        <h5>STAN: </h5>
+    //                    </div>
+    //                    <div className="row">
+    //                        <h5>OCENA:  </h5>
+    //                    </div>
+    //                </div >
+    //            )
+    //        })}
+    //    </div>
+    //)
+
+
     render() {
-        //const { isLoaded } = this.state
+        //const {isLoaded} = this.state
         //if (!isLoaded) return <div><h1>error fetching data</h1></div>
         return (
             this.generate(this.state.books)

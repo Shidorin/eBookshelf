@@ -1,5 +1,4 @@
 const express = require('express')
-const { identity } = require('lodash')
 var router = express.Router()
 const Book = require('../models/Books')
 const UserBooks = require('../models/UserBooks')
@@ -73,9 +72,6 @@ router.post('/', (req, res) => {
         foreignKey: 'book_id'
     });
 
-    console.log('========================================\n')
-    console.log(req.body.username)
-    console.log('========================================\n')
     Book.findAll({
         raw:true,
         include: [{
@@ -85,7 +81,7 @@ router.post('/', (req, res) => {
             model: User,
         }]
     }).then(data => {
-        console.log(data)
+        //console.log(data)
         res.status(200).send(data)
     })
 
