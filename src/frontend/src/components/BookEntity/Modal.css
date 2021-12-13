@@ -1,49 +1,58 @@
-  /* Modal Header */
-  .modal-header {
-      padding: 1px 16px;
-
-      background-color: #1f1f2b;
-      color: #bcbedc;
-  }
-
-  /* Modal Body */
-  .modal-body {
-      padding: 2px 16px;
-      color: #bcbedc;
-      overflow: hidden;
-  }
-
-  /*  
+    /*  
   #bcbedc  - kolor napisów
   #2B2D42  - kolor jasny
   #282c34  - kolor ciemny
   */
-  /* Modal Content */
-  .modal-content {
-      position: relative;
-      background-color: #2B2D42;
-      margin: auto;
-      padding: 0;
-      width: 35%;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
 
-  @-webkit-keyframes fadeIn {
-      from {
-          opacity: 0
-      }
+    .MODAL_STYLES {
+        position: fixed;
+        width: auto;
+        height: auto;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #2B2D42;
+        padding: 1px;
+        z-index: 1000;
+    }
 
-      to {
-          opacity: 1
-      }
-  }
+    .OVERLAY_STYLES {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 1000;
+    }
 
-  @keyframes fadeIn {
-      from {
-          opacity: 0
-      }
 
-      to {
-          opacity: 1
-      }
-  }
+    /* Modal Header */
+    .modal-header {
+        padding: 1px 16px;
+
+        background-color: #1f1f2b;
+        color: #bcbedc;
+    }
+
+    /* Modal Body */
+    .modal-body {
+        padding: 2px 16px;
+        color: #bcbedc;
+        overflow: hidden;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: fixed;
+        background-color: #282c34;
+        margin: auto;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+        width: 40%;
+        height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        z-index: 1000;
+    }
