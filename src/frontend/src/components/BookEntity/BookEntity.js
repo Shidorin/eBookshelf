@@ -36,8 +36,6 @@ class BookEntity extends React.Component {
             .catch((error) => {
                 console.error(error)
             })
-
-
     }
 
     openModel() {
@@ -63,10 +61,10 @@ class BookEntity extends React.Component {
                             <h5>Release date: {book.release_date}</h5>
                         </div>
                         <div className="row">
-                            <h5>Your score: {book["users.book-user.score"]}</h5>
+                            <h5>Your score: {book["users.book-user.score"] ? book["users.book-user.score"] : " -"}</h5>
                         </div>
                         <div className="row">
-                            <h5>Your status: {book["users.book-user.status"]}</h5>
+                            <h5>Your status: {book["users.book-user.status"] ? book["users.book-user.status"] : " -"}</h5>
                         </div>
                         <div className="row">
                             <h5>Genre: {book.genre}</h5>
@@ -79,7 +77,7 @@ class BookEntity extends React.Component {
                     {/* MODAL FRAGMENT */}
                     < div className="BUTTON_WRAPPER_STYLES" >
 
-                        <Modal open={this.state.showModal} onClose={this.openModel.bind(this)} scoreIn={book["users.book-user.score"]} statusIn={book["users.book-user.status"]} titleIn={book.title}  > </Modal>
+                        <Modal open={this.state.showModal} onClose={this.openModel.bind(this)} scoreIn={book["users.book-user.score"]} statusIn={book["users.book-user.status"]} titleIn={book.title} bookId={this.props.match.params.id}  > </Modal>
                     </div >
                 </>
             )

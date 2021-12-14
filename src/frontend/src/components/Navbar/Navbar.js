@@ -39,8 +39,13 @@ class Navbar extends React.Component {
                             if (localStorage.getItem('username')) {
                                 if (item.title === 'Login') return false
                                 if (item.title === 'Sign up') return false
+
                             }
-                            else {  if (item.title === 'Log out') return false }
+                            else {
+                                if (item.title === 'Log out') return false
+                                if (item.title === 'My Books') return false
+                                if (item.title === 'Profile') return false
+                            }
                             return true
                         }).map((item, index) => {
 

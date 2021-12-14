@@ -4,7 +4,11 @@ const db = require('../config/database');
 const User = db.define('users', {
     id: {
         type: Sequalize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        get() {
+            const rawValue = this.getDataValue('id')
+            return rawValue ? rawValue : null
+        }
     },
     username: {
         type: Sequalize.STRING
@@ -18,6 +22,7 @@ const User = db.define('users', {
     birthday: {
         type: Sequalize.DATE
     },
+    
 })
 
 module.exports = User;

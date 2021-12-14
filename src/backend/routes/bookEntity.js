@@ -11,7 +11,6 @@ const User = require('../models/Users')
 //const book = connection.define()
 
 router.get('/:id/:title', (req, res) => {
-
     Book.findAll({
         where: {
             id: req.params.id,
@@ -28,7 +27,6 @@ router.get('/:id/:title', (req, res) => {
 
 
 router.get('/:id/:title/:username', (req, res) => {
-
     User.belongsToMany(Book, {
         through: {
             model: UserBooks
@@ -61,8 +59,20 @@ router.get('/:id/:title/:username', (req, res) => {
 
         }]
     }).then(data => {
-        //console.log(data)
-        res.status(200).send(data)
+        console.log(data)
+        if (data.length == 0) {
+            Book.findAll({
+                raw: true,
+                where: {
+                    id: req.params.id,
+                },
+                attributes: ['description', 'genre', 'release_date', 'title',],
+            }).then(book => {
+                res.status(200).send(book)
+            })
+        } else {
+            res.status(200).send(data)
+        }
     }).catch(err => console.log(err))
 })
 

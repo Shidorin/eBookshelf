@@ -41,6 +41,9 @@ app.use('/login', login.router)
 // signup
 var signup = require('./routes/signup')
 app.use('/signup', signup.router)
+// add book to user list
+var bookToList = require('./routes/bookToList')
+app.use('/bookToList', bookToList.router)
 
 app.get('/', (req, res) => {
   //res.send('Hello!')

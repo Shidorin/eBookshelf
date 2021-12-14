@@ -4,16 +4,19 @@ import { Redirect } from 'react-router'
 class Logout extends React.Component {
 
     redirect() {
-        return <Redirect to="/" />
+        return <Redirect to="/home" />
     }
     logout() {
+        if (localStorage.getItem('username')) document.location.reload();
         localStorage.clear()
+
     }
 
     render() {
         this.logout()
+
         return (
-            <Redirect to="/" />
+            this.redirect()
         )
     }
 }

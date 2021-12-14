@@ -11,12 +11,12 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 
 
-export const Modal = ({ open, children, onClose, scoreIn, statusIn, titleIn }) => {
+export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => {
     const [startDate, setStartDate] = React.useState(new Date());
     const [endDate, setEndDate] = React.useState(new Date());
-    const [score, setScore] = React.useState(scoreIn);
-    const [status, setStatus] = React.useState(statusIn);
-
+    const [score, setScore] = React.useState(scoreIn ?? " ");
+    const [status, setStatus] = React.useState(statusIn ?? " ");
+    
     const handleScoreChange = (event) => {
         setScore(event.target.value);
     };
@@ -25,6 +25,34 @@ export const Modal = ({ open, children, onClose, scoreIn, statusIn, titleIn }) =
         setStatus(event.target.value);
     };
 
+    const addNewBookToList = () => {
+        var json = JSON.stringify({
+            book_id: bookId,
+            username: localStorage.getItem('username'),
+            date_start: startDate.toISOString().substring(0, 10),
+            date_completed: endDate.toISOString().substring(0, 10),
+            score: score,
+            status: status,
+        })
+        fetch('http://localhost:8080/bookToList', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json,
+        })
+            .then(() => {
+                onClose(true)
+                document.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error: ', error)
+                return false
+            });
+    }
+
+
     if (!open) return null
     return ReactDOM.createPortal(
         <>
@@ -32,7 +60,7 @@ export const Modal = ({ open, children, onClose, scoreIn, statusIn, titleIn }) =
 
             <div className="modal-content" >
                 <div className='modal-header'>
-                    {titleIn}
+                    {titleIn.toUpperCase()}
                 </div>
                 <Box sx={{ backgroundColor: "#bcbedc" }}>
 
@@ -105,7 +133,7 @@ export const Modal = ({ open, children, onClose, scoreIn, statusIn, titleIn }) =
                     </Box>
                     <Box sx={{ minWidth: 120, maxWidth: 150, padding: "5px", backgroundColor: "#bcbedc" }}>
                         {startDate > endDate ? <div>error in dates</div> : null}
-                        <Button variant="contained" onClick={onClose}>Add</Button>
+                        <Button variant="contained" onClick={addNewBookToList}>Add</Button>
                     </Box>
                 </Box>
             </div>
