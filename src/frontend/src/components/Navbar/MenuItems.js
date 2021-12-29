@@ -16,7 +16,7 @@ export const MenuItems = [
     },
     {
         title: 'Profile',
-        url: '#',
+        url: 'profile',
         cName: 'nav-links'
     },
     {

@@ -1,6 +1,43 @@
 import React from "react";
 import './BookList.css'
 import { Link } from 'react-router-dom'
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: "#2B2D42",
+        color: "#bcbedc",
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 16,
+        backgroundColor: "#2B2D42",
+        color: "#bcbedc",
+        borderBottom: "unset",
+        textDecoration: "none",
+    },
+
+
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: "#2B2D42",
+        color: "#bcbedc",
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
+
 class BookList extends React.Component {
 
     constructor(props) {
@@ -39,69 +76,53 @@ class BookList extends React.Component {
             })
     }
 
-    bookLoop(books) {
-        var tab = []
-        for (const book of books) {
-            tab.push(
-                <tr>
-                    <td>
-                        <Link to={'/book/' + book.id + '/' + book.title}>
-                            <h5>ID: {book.id}</h5>
-                        </Link>
-                    </td>
-                    <td><h5>Title: {book.title}</h5></td>
-                    <td><h5>Status: {book["users.book-user.status"]}</h5></td>
-                    <td><h5>Score: {book["users.book-user.score"]} </h5></td>
-                </tr>
-
-            )
-        }
-        return tab
-    }
-
     generate(books) {
         var tab = [
-            <div>
-                <table class="table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Score</th>
-                    </tr>
-                    {this.bookLoop(books)}
 
+            <TableContainer sx={{
+                width: '40%',
+                maxWidth: '70%',
+                backgroundColor: "#2B2D42",
+                position: "absolute",
+                top: "7%",
+                transform: 'translate(70%)',
+                px: "20px",
+                pb: "20px",
+                color: '#bcbedc',
+            }} >
+                <Table sx={{ minWidth: 700 }} >
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">#</StyledTableCell>
+                            <StyledTableCell align="center">Title</StyledTableCell>
+                            <StyledTableCell align="center">Status</StyledTableCell>
+                            <StyledTableCell align="center">Score</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {books.map((book, index) => (
+                            <StyledTableRow key={book.id}>
+                                <StyledTableCell align="center">
+                                    {/* <Link to={'/book/' + book.id + '/' + book.title}>
+                                        {book.id}
+                                     </Link>*/}
+                                    {++index}
+                                </StyledTableCell>
+                                <StyledTableCell align="center" component={Link} to={'/book/' + book.id + '/' + book.title} >
+                                    {book.title}
+                                </StyledTableCell>
+                                <StyledTableCell align="center">{book["users.book-user.status"]}</StyledTableCell>
+                                <StyledTableCell align="center">{book["users.book-user.score"]}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
-                </table>
-            </div >
         ]
         return tab
     }
-    //return (
-    //    <div className="App">
-    //        {books.map(book => {
-    //            console.log(book)
-    //            return (
-    //                <div key={book.id}>
-    //                    <div className="row" >
-    //                        <Link to={'/book/' + book.id + '/' + book.title}>
-    //                            <h5>ID: {book.id}</h5>
-    //                        </Link>
-    //                    </div>
-    //                    <div className="row">
-    //                        <h5>Title: {book.title}</h5>
-    //                    </div>
-    //                    <div className="row">
-    //                        <h5>STAN: </h5>
-    //                    </div>
-    //                    <div className="row">
-    //                        <h5>OCENA:  </h5>
-    //                    </div>
-    //                </div >
-    //            )
-    //        })}
-    //    </div>
-    //)
+
 
 
     render() {

@@ -32,7 +32,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  color: white;
+}
+
+.textfield__label {
+  color:#bcbedc !important; 
 }

@@ -8,7 +8,8 @@ import BookEntity from './components/BookEntity/BookEntity';
 import LoginForm from './components/LoginForm/LoginForm';
 import Logout from './components/Logout/Logout';
 import Signup from './components/Signup/Signup';
-//import { useState } from 'react';
+import Profile from './components/Profile/Profile';
+
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' component={LoginForm} />
         <Route path='/logout' component={Logout} />
         <Route path='/signup' component={Signup} />
+        <Route path='/profile' component={Profile} />
       </Switch>
     </Router>
   )

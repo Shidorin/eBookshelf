@@ -14,7 +14,7 @@ class Home extends React.Component {
         return (
             <div className='homepage'>
                 <h5>HOMEPAGE  {localStorage.getItem('username')}</h5>
-
+                
             </div>
         )
     }

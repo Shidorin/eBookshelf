@@ -4,19 +4,22 @@ REMEMBER TO COMMIT MORE OFTEN
 
 frontend:
 
-- [x] Navbar
-- [ ] Home
-- [ ] Books
-- [ ] Book Entity
-- [ ] Book list
-- [ ] Profile
-- [x] backend connection
-- [x] login
-- [x] fix login redirect
-- [x] signup
+
+- [ ] reviews on book entity
+- [ ] book list sorting and avg score
+- [ ] /home - new added books + currently read books
+- [ ] all components css style
+- [ ] /profile - change password etc
+- [ ] using token to authorize requests
 
 backend:
 
-- [x] Login
-- [x] Session
-- [ ] Api
+- [ ] Api (change profile, currently read)
+- [ ] test wrong requests
+- [ ] count avg score for book every midnight
+- [ ] sorting by params
+
+
+test:
+
+- [ ] jest

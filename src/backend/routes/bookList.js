@@ -57,7 +57,6 @@ router.post('/', (req, res) => {
     //            }]
     //        }],
     //     });
-
     User.belongsToMany(Book, {
         through: {
             model: UserBooks
@@ -71,20 +70,21 @@ router.post('/', (req, res) => {
         },
         foreignKey: 'book_id'
     });
-
-    Book.findAll({
-        raw:true,
-        include: [{
-            where: {
-                username: req.body.username,
-            },
-            model: User,
-        }]
-    }).then(data => {
-        //console.log(data)
-        res.status(200).send(data)
-    })
-
+    if (req.body.username) {
+        Book.findAll({
+            raw: true,
+            include: [{
+                where: {
+                    username: req.body.username,
+                },
+                model: User,
+            }]
+        }).then(data => {
+            //console.log(data)
+            res.status(200).send(data)
+        })
+    }
+    else { res.status(400).send() }
 })
 
 
