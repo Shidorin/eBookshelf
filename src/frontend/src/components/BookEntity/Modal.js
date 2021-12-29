@@ -16,7 +16,9 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
     const [endDate, setEndDate] = React.useState(new Date());
     const [score, setScore] = React.useState(scoreIn ?? " ");
     const [status, setStatus] = React.useState(statusIn ?? " ");
-    
+
+
+
     const handleScoreChange = (event) => {
         setScore(event.target.value);
     };
@@ -34,6 +36,7 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
             score: score,
             status: status,
         })
+        console.log("modal json: " + json)
         fetch('http://localhost:8080/bookToList', {
             credentials: 'include',
             method: "POST",

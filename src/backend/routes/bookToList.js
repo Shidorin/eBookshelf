@@ -14,8 +14,6 @@ router.post('/', (req, res) => {
     console.log("date_start " + req.body.date_start)
     console.log("date_completed " + req.body.date_completed)
 
-
-
     /*dodawanie rekordu do book-user
     musze miec id ksiazki i id usera
     dodac do book-user
@@ -35,15 +33,6 @@ router.post('/', (req, res) => {
     // },
     // foreignKey: 'book_id'
     // });
-
-
-
-
-
-
-
-
-
 
     User.findAll({
         where: [{

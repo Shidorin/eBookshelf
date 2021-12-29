@@ -8,6 +8,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Container from '@mui/material/Container';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -55,7 +56,7 @@ class BookList extends React.Component {
         var json = JSON.stringify({
             username: this.state.username,
         })
-        console.log(json)
+        //console.log(json)
         fetch('http://localhost:8080/bookList', {
             credentials: 'include',
             method: "POST",
@@ -78,47 +79,52 @@ class BookList extends React.Component {
 
     generate(books) {
         var tab = [
-
-            <TableContainer sx={{
-                width: '40%',
-                maxWidth: '70%',
-                backgroundColor: "#2B2D42",
-                position: "absolute",
-                top: "7%",
-                transform: 'translate(70%)',
-                px: "20px",
-                pb: "20px",
-                color: '#bcbedc',
-            }} >
-                <Table sx={{ minWidth: 700 }} >
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell align="center">#</StyledTableCell>
-                            <StyledTableCell align="center">Title</StyledTableCell>
-                            <StyledTableCell align="center">Status</StyledTableCell>
-                            <StyledTableCell align="center">Score</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {books.map((book, index) => (
-                            <StyledTableRow key={book.id}>
-                                <StyledTableCell align="center">
-                                    {/* <Link to={'/book/' + book.id + '/' + book.title}>
-                                        {book.id}
-                                     </Link>*/}
-                                    {++index}
-                                </StyledTableCell>
-                                <StyledTableCell align="center" component={Link} to={'/book/' + book.id + '/' + book.title} >
-                                    {book.title}
-                                </StyledTableCell>
-                                <StyledTableCell align="center">{book["users.book-user.status"]}</StyledTableCell>
-                                <StyledTableCell align="center">{book["users.book-user.score"]}</StyledTableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
+            <Container component="main">
+                <TableContainer sx={{
+                    maxWidth: '100%',
+                    display: 'flex',
+                    backgroundColor: "#2B2D42",
+                    color: '#bcbedc',
+                    marginTop: 8,
+                    alignItems: 'center',
+                }} >
+                    <Table sx={{ minWidth: 700 }} >
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell align="center">#</StyledTableCell>
+                                <StyledTableCell align="center">Title</StyledTableCell>
+                                <StyledTableCell align="center">Status</StyledTableCell>
+                                <StyledTableCell align="center">Score</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {books.map((book, index) => (
+                                <StyledTableRow key={book.id}>
+                                    <StyledTableCell align="center">
+                                        {++index}
+                                    </StyledTableCell>
+                                    <StyledTableCell
+                                        align="center"
+                                        component={Link} to={'/book/' + book.id + '/' + book.title}
+                                    >
+                                        {book.title}
+                                    </StyledTableCell>
+                                    <StyledTableCell
+                                        align="center"
+                                    >
+                                        {book["users.book-user.status"]}
+                                    </StyledTableCell>
+                                    <StyledTableCell
+                                        align="center"
+                                    >
+                                        {book["users.book-user.score"]}
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Container>
         ]
         return tab
     }

@@ -59,7 +59,7 @@ router.get('/:id/:title/:username', (req, res) => {
 
         }]
     }).then(data => {
-        console.log(data)
+        //console.log("bookEntity" + data)
         if (data.length == 0) {
             Book.findAll({
                 raw: true,

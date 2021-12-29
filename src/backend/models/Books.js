@@ -24,6 +24,9 @@ const Book = db.define('books', {
     genre: {
         type: Sequalize.STRING
     },
+    rating: {
+        type: Sequalize.FLOAT
+    },
 })
 
 

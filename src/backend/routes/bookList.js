@@ -17,6 +17,7 @@ const User = require('../models/Users')
 
 //send user related books
 router.post('/', (req, res) => {
+
     //     User.findOne({
     //        where: {
     //            username: req.body.username
@@ -73,11 +74,14 @@ router.post('/', (req, res) => {
     if (req.body.username) {
         Book.findAll({
             raw: true,
+            attributes: ['id', 'title',],
             include: [{
                 where: {
                     username: req.body.username,
                 },
                 model: User,
+                attributes: [],
+                through: { attributes: ['score', 'status',], }
             }]
         }).then(data => {
             //console.log(data)
