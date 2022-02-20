@@ -8,7 +8,6 @@ module.exports = new Sequelize("dbbooklist", "root", "", {
     timestamps: false,
     createdAt: false,
     updatedAt: false,
-    //freezeTableName: true,
   },
 })
 

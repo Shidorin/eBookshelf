@@ -5,11 +5,7 @@ const Book = require('../models/Books')
 const UserBooks = require('../models/UserBooks')
 const User = require('../models/Users')
 
-
-//const connection = require('../modules/database').con
-
-//const book = connection.define()
-
+// get guest book
 router.get('/:id/:title', (req, res) => {
     Book.findAll({
         where: {
@@ -17,7 +13,7 @@ router.get('/:id/:title', (req, res) => {
         }
     })
         .then(book => {
-            //console.log(book)
+            console.log(book)
             //res.sendStatus(200)
             res.send(book)
             return
@@ -25,7 +21,7 @@ router.get('/:id/:title', (req, res) => {
         .catch(err => console.log(err))
 })
 
-
+//get user book
 router.get('/:id/:title/:username', (req, res) => {
     User.belongsToMany(Book, {
         through: {
@@ -41,13 +37,12 @@ router.get('/:id/:title/:username', (req, res) => {
         foreignKey: 'book_id'
     });
 
-
     Book.findAll({
         raw: true,
         where: {
             id: req.params.id,
         },
-        attributes: ['description', 'genre', 'release_date', 'title',],
+        attributes: ['description', 'genre', 'release_date', 'title', 'rating'],
         include: [{
             where: {
                 username: req.params.username,
@@ -55,22 +50,23 @@ router.get('/:id/:title/:username', (req, res) => {
             attributes: [],
             model: User,
             raw: true,
-            through: { attributes: ['date_completed', 'date_start', 'score', 'status',], }
+            through: { attributes: ['date_completed', 'date_start', 'score', 'status'], }
 
         }]
     }).then(data => {
-        //console.log("bookEntity" + data)
+        //if user does not have book on list
         if (data.length == 0) {
             Book.findAll({
                 raw: true,
                 where: {
                     id: req.params.id,
                 },
-                attributes: ['description', 'genre', 'release_date', 'title',],
+                attributes: ['description', 'genre', 'release_date', 'title', 'rating'],
             }).then(book => {
+                console.log(book)
                 res.status(200).send(book)
             })
-        } else {
+        } else { //user has book on list
             res.status(200).send(data)
         }
     }).catch(err => console.log(err))

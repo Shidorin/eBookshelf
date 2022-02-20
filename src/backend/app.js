@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 const cors = require('cors')
 const port = 8080
 var app = express();
+
 const schedule = require('node-schedule');
 
 //Database
@@ -31,43 +32,46 @@ app.use(cors({
 const Book = require('./models/Books')
 const UserBooks = require('./models/UserBooks')
 
-const rule = new schedule.RecurrenceRule();
-rule.minute = 21;
+// const rule = new schedule.RecurrenceRule();
+////rule.second = new Date().getSeconds() + 5;
+// rule.minute = 16;
+// 
+// const job = schedule.scheduleJob(rule, function () {
+// console.log('update books scores');
+// Book.findAll({
+// raw: true,
+// attributes: ["id"],
+// }).then(async books => {
+// for (oneBook of books) {
+// await UserBooks.findAll({
+// where: {
+// book_id: oneBook.id
+// },
+// raw: true,
+// attributes: ["score"],
+// }).then(async bookScores => {
+// let tmpScore = 0;
+// let count = 0;
+// for (bookScore of bookScores) {
+// tmpScore += parseFloat(bookScore.score)
+// count += 1;
+// }
+// if (count == 0) tmpScore = null;
+// else {
+// tmpScore /= count
+// tmpScore = tmpScore.toFixed(2)
+// }
+// 
+// Book.update(
+// { rating: tmpScore, },
+// { where: { id: oneBook.id } }
+// )
+// })
+// }
+// })
+// });
 
-const job = schedule.scheduleJob(rule, function () {
-  console.log('update books scores');
-  Book.findAll({
-    raw: true,
-    attributes: ["id"],
-  }).then(async books => {
-    for (oneBook of books) {
-      await UserBooks.findAll({
-        where: {
-          book_id: oneBook.id
-        },
-        raw: true,
-        attributes: ["score"],
-      }).then(async bookScores => {
-        let tmpScore = 0.0;
-        let count = 0;
-        for (bookScore of bookScores) {
-          tmpScore += parseFloat(bookScore.score)
-          count += 1;
-        }
-        if (count == 0) tmpScore = null;
-        else tmpScore = (tmpScore / count).toPrecision(2)
-        console.log("rating: " + tmpScore)
-
-        Book.update(
-          { rating: tmpScore, },
-          { where: { id: oneBook.id } }
-        )
-      })
-    }
-  })
-});
-
-// at the moment all books information
+// all books information
 var books = require('./routes/books')
 app.use('/books', books.router)
 // user related books
@@ -84,8 +88,13 @@ var signup = require('./routes/signup')
 app.use('/signup', signup.router)
 // add book to user list
 var bookToList = require('./routes/bookToList');
-const { divide } = require('lodash');
 app.use('/bookToList', bookToList.router)
+// review
+var review = require('./routes/review');
+app.use('/review', review.router)
+// profile
+var profile = require('./routes/profile');
+app.use('/profile', profile.router)
 
 app.get('/', (req, res) => {
   //res.send('Hello!')

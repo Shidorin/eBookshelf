@@ -6,12 +6,6 @@ const bcrypt = require('bcrypt')
 const db = require('../config/database')
 const Users = require('../models/Users')
 
-router.get('/', function (req, res, next) {
-  //res.send('respond with a resource');
-});
-
-
-const users = []
 
 router.post('/users', async (req, res) => {
   try {
@@ -25,7 +19,7 @@ router.post('/users', async (req, res) => {
   }
 })
 
-
+//login user
 router.post('/', async (req, res, next) => {
   Users.findOne({
     where: {

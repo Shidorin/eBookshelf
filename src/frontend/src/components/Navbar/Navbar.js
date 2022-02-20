@@ -1,66 +1,55 @@
-import React from 'react'
+import React, { useState } from "react";
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
-class Navbar extends React.Component {
+function Navbar() {
 
-    state = { clicked: false }
+    const [clicked] = useState(false)
 
-    klik() {
-        console.log("klik")
+    const history = useHistory();
+
+    const redirect = () => {
+        history.push("/home");
     }
 
-    handleClick = () => {
-        this.setState({ clicked: !this.state.clicked })
-    }
+    return (
 
-    render() {
-        return (
+        <nav className="NavbarItems">
 
-            <nav className="NavbarItems">
-
-                <h1 className="navbar-logo">
-                    TEST
-                </h1>
-
-                {/* <div className="menu-icon" onClick={this.handleClick}>
-
-                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-
-                </div> */}
+            <h1 className="navbar-logo" onClick={redirect} >
+                eBookshelf
+            </h1>
+            <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
+                {
 
 
-                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-                    {
+                    MenuItems.filter((item) => {
+                        if (localStorage.getItem('username')) {
+                            if (item.title === 'Login') return false
+                            if (item.title === 'Sign up') return false
+
+                        }
+                        else {
+                            if (item.title === 'Log out') return false
+                            if (item.title === 'My Books') return false
+                            if (item.title === 'Profile') return false
+                        }
+                        return true
+                    }).map((item, index) => {
 
 
-                        MenuItems.filter((item) => {
-                            if (localStorage.getItem('username')) {
-                                if (item.title === 'Login') return false
-                                if (item.title === 'Sign up') return false
-
-                            }
-                            else {
-                                if (item.title === 'Log out') return false
-                                if (item.title === 'My Books') return false
-                                if (item.title === 'Profile') return false
-                            }
-                            return true
-                        }).map((item, index) => {
-
-
-                            return (
-                                <li key={index}>
-                                    {<Link className={item.cName} to={'/' + item.url}>{item.title}</Link>}
-                                    {/*<a className={item.cName} href={item.url} onClick={this.klik}>
+                        return (
+                            <li key={index}>
+                                {<Link className={item.cName} to={'/' + item.url}>{item.title}</Link>}
+                                {/*<a className={item.cName} href={item.url} onClick={this.klik}>
                                 </a>*/}
-                                </li>
-                            )
-                        })}
-                </ul>
-            </nav>
-        )
-    }
+                            </li>
+                        )
+                    })}
+            </ul>
+        </nav>
+    )
+
 }
 export default Navbar;

@@ -22,8 +22,8 @@ router.get('/', (req, res) => {
         .catch(err => console.log(err))
 })
 
+// username request for books
 router.get('/:username', (req, res) => {
-    console.log("username request for books")
     User.belongsToMany(Book, {
         through: {
             model: UserBooks
@@ -58,10 +58,7 @@ router.get('/:username', (req, res) => {
             }
         }]
     }).then(data => {
-
-
         res.status(200).send(data)
-
     })
 })
 

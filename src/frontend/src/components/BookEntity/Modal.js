@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './Modal.css'
-import { Button, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+import { Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
+import { ColorButton } from '../../styles/Style'
 
 
 
@@ -17,7 +18,7 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
     const [score, setScore] = React.useState(scoreIn ?? " ");
     const [status, setStatus] = React.useState(statusIn ?? " ");
 
-
+    console.log("title " + titleIn)
 
     const handleScoreChange = (event) => {
         setScore(event.target.value);
@@ -65,12 +66,30 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
                 <div className='modal-header'>
                     {titleIn.toUpperCase()}
                 </div>
-                <Box sx={{ backgroundColor: "#bcbedc" }}>
+                <Box sx={{
+                    backgroundColor: "#bcbedc",
+                }}>
 
                     {/* score select component */}
-                    <Box sx={{ minWidth: 120, maxWidth: 150, padding: "5px", backgroundColor: "#bcbedc" }}>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Score</InputLabel>
+                    <Box
+                        sx={{
+                            minWidth: 120,
+                            maxWidth: 150,
+                            padding: "5px",
+                            backgroundColor: "#bcbedc",
+
+                            mx: 5,
+                        }}
+                    >
+                        <FormControl
+
+                            fullWidth
+                        >
+                            <InputLabel
+                                id="demo-simple-select-label"
+                            >
+                                Score
+                            </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -88,9 +107,25 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
                     </Box>
 
                     {/* status select component */}
-                    <Box sx={{ minWidth: 120, maxWidth: 150, padding: "5px", backgroundColor: "#bcbedc" }}>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                    <Box
+                        sx={{
+                            minWidth: 120,
+                            maxWidth: 150,
+                            padding: "5px",
+
+                            mx: 5,
+                            my: 5,
+                            backgroundColor: "#bcbedc"
+                        }}
+                    >
+                        <FormControl
+                            fullWidth
+                        >
+                            <InputLabel
+                                id="demo-simple-select-label"
+                            >
+                                Status
+                            </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -108,35 +143,63 @@ export const Modal = ({ open, onClose, scoreIn, statusIn, titleIn, bookId }) => 
                     </Box>
 
                     {/* date start select component */}
-                    <Box sx={{ minWidth: 120, maxWidth: 150, padding: "5px", backgroundColor: "#bcbedc" }}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack spacing={3}>
-                                <DesktopDatePicker
-                                    label="Start Date"
-                                    inputFormat="yyyy/MM/dd"
-                                    value={startDate}
-                                    onChange={setStartDate}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </Stack>
-                        </LocalizationProvider>
-
-                        {/* date end select component */}
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack spacing={3}>
-                                <DesktopDatePicker
-                                    label="End Date"
-                                    inputFormat="yyyy/MM/dd"
-                                    value={endDate}
-                                    onChange={setEndDate}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </Stack>
-                        </LocalizationProvider>
-                    </Box>
-                    <Box sx={{ minWidth: 120, maxWidth: 150, padding: "5px", backgroundColor: "#bcbedc" }}>
+                    <Box
+                        sx={{
+                            padding: "5px",
+                            mx: 3,
+                            flexDirection: 'row',
+                            backgroundColor: "#bcbedc",
+                            maxWidth: 300,
+                        }}
+                    >
+                        <Box>
+                            <LocalizationProvider
+                                dateAdapter={AdapterDateFns}
+                            >
+                                <Stack spacing={3}>
+                                    <DesktopDatePicker
+                                        label="Start Date"
+                                        inputFormat="yyyy/MM/dd"
+                                        value={startDate}
+                                        onChange={setStartDate}
+                                        renderInput={(params) => <TextField {...params} />}
+                                    />
+                                </Stack>
+                            </LocalizationProvider>
+                        </Box>
+                        <Box
+                            sx={{
+                                my: 2,
+                            }}>
+                            {/* date end select component */}
+                            <LocalizationProvider
+                                sx={{
+                                    my: 2,
+                                }}
+                                dateAdapter={AdapterDateFns}
+                            >
+                                <Stack spacing={3}>
+                                    <DesktopDatePicker
+                                        label="End Date"
+                                        inputFormat="yyyy/MM/dd"
+                                        value={endDate}
+                                        onChange={setEndDate}
+                                        renderInput={(params) => <TextField {...params} />}
+                                    />
+                                </Stack>
+                            </LocalizationProvider>
+                        </Box>
                         {startDate > endDate ? <div>error in dates</div> : null}
-                        <Button variant="contained" onClick={addNewBookToList}>Add</Button>
+
+                        <ColorButton
+                            sx={{
+                                my: 2,
+                            }}
+                            variant="contained"
+                            onClick={addNewBookToList}
+                        >
+                            Add
+                        </ColorButton>
                     </Box>
                 </Box>
             </div>

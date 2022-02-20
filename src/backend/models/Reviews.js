@@ -1,31 +1,30 @@
 const Sequalize = require('sequelize');
 const db = require('../config/database');
 
-const Book = db.define('books', {
+const Reviews = db.define('reviews', {
     id: {
         type: Sequalize.INTEGER,
         primaryKey: true
     },
+    user_id: {
+        type: Sequalize.INTEGER
+    },
+    book_id: {
+        type: Sequalize.INTEGER
+    },
     title: {
         type: Sequalize.STRING
     },
-    description: {
+    body: {
         type: Sequalize.STRING
     },
-    release_date: {
-        type: Sequalize.DATE
-    },
-    relation_id: {
+    score: {
         type: Sequalize.INTEGER
     },
-    author_id: {
-        type: Sequalize.INTEGER
-    },
-    genre: {
+    was_helpful: {
         type: Sequalize.STRING
-    },
-    rating: {
-        type: Sequalize.FLOAT
     },
 })
-module.exports = Book;
+
+
+module.exports = Reviews;

@@ -3,11 +3,7 @@ var router = express.Router()
 const Users = require('../models/Users')
 const bcrypt = require('bcrypt')
 
-router.get('/', function (req, res, next) {
-    //res.send('respond with a resource');
-});
-
-
+//create new user
 router.post('/', (req, res) => {
     Users.findOne({
         where: {
@@ -16,7 +12,7 @@ router.post('/', (req, res) => {
     }).then(async user => {
         if (user !== null) {
             console.log('Username found!');
-            res.status(403) // Forbidden - Already exists
+            res.status(403).send() // Forbidden - Already exists
             return
         }
         else {
@@ -28,9 +24,9 @@ router.post('/', (req, res) => {
                     password: hashedPassword,
                     email: req.body.email,
                 })
-                res.status(201) // Created
+                res.status(201).send()  // Created
             } catch {
-                res.status(500) // Internal Server Error
+                res.status(500).send()  // Internal Server Error
             }
         }
     })
