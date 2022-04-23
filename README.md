@@ -1,6 +1,6 @@
-#File structure
+#File structure#
 
-#Backend
+###Backend###
 
 **src\backend\app.js** - starting file for backend, includes routings and scheduler
 
@@ -10,7 +10,7 @@
 
 **src\backend\models\?** - model of tables in system for Sequelize
 
-#Frontend
+###Frontend###
 
 **src\frontend\src\app.js** - handles routing
 
