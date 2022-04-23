@@ -1,26 +1,9 @@
-###TODO###
-
-REMEMBER TO COMMIT MORE OFTEN
-
-frontend:
-
-
-- [ ] reviews on book entity
-- [ ] update book enitity
-- [ ] book list sorting
-- [ ] /home - new added books + currently read books
-- [ ] all components css style
-- [x] /profile - change password etc
-- [ ] using token to authorize requests
-
-backend:
-
-- [ ] Api (change profile, currently read)
-- [ ] test wrong requests
-- [X] count avg score for book every midnight
-- [ ] sorting by params
-
-
-test:
-
-- [ ] jest
+#File structure
+#Backend
+**src\backend\app.js** - starting file for backend, includes routings and scheduler
+**src\backend\config\database.js** - defines connection with database
+**src\backend\routes\?** - handling endpoint with the same name
+**src\backend\models\?** - model of tables in system for Sequelize
+#Frontend
+**src\frontend\src\app.js** - handles routing
+**src\frontend\src\components\X** - folders for every landing page with their style and modals
