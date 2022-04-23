@@ -14,11 +14,6 @@ import Profile from './components/Profile/Profile';
 
 
 function App() {
-  //const [token, setToken] = useState()
-  //if (!token) {
-  //  return <LoginForm setToken={setToken} />
-  //}
-
   return (
     <Router>
       <Navbar />

@@ -32,44 +32,44 @@ app.use(cors({
 const Book = require('./models/Books')
 const UserBooks = require('./models/UserBooks')
 
-// const rule = new schedule.RecurrenceRule();
-////rule.second = new Date().getSeconds() + 5;
-// rule.minute = 16;
-// 
-// const job = schedule.scheduleJob(rule, function () {
-// console.log('update books scores');
-// Book.findAll({
-// raw: true,
-// attributes: ["id"],
-// }).then(async books => {
-// for (oneBook of books) {
-// await UserBooks.findAll({
-// where: {
-// book_id: oneBook.id
-// },
-// raw: true,
-// attributes: ["score"],
-// }).then(async bookScores => {
-// let tmpScore = 0;
-// let count = 0;
-// for (bookScore of bookScores) {
-// tmpScore += parseFloat(bookScore.score)
-// count += 1;
-// }
-// if (count == 0) tmpScore = null;
-// else {
-// tmpScore /= count
-// tmpScore = tmpScore.toFixed(2)
-// }
-// 
-// Book.update(
-// { rating: tmpScore, },
-// { where: { id: oneBook.id } }
-// )
-// })
-// }
-// })
-// });
+const rule = new schedule.RecurrenceRule();
+//rule.second = new Date().getSeconds() + 5;
+rule.minute = 16;
+
+const job = schedule.scheduleJob(rule, function () {
+  console.log('update books scores');
+  Book.findAll({
+    raw: true,
+    attributes: ["id"],
+  }).then(async books => {
+    for (oneBook of books) {
+      await UserBooks.findAll({
+        where: {
+          book_id: oneBook.id
+        },
+        raw: true,
+        attributes: ["score"],
+      }).then(async bookScores => {
+        let tmpScore = 0;
+        let count = 0;
+        for (bookScore of bookScores) {
+          tmpScore += parseFloat(bookScore.score)
+          count += 1;
+        }
+        if (count == 0) tmpScore = null;
+        else {
+          tmpScore /= count
+          tmpScore = tmpScore.toFixed(2)
+        }
+
+        Book.update(
+          { rating: tmpScore, },
+          { where: { id: oneBook.id } }
+        )
+      })
+    }
+  })
+});
 
 // all books information
 var books = require('./routes/books')
