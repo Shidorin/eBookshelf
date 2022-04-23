@@ -5,14 +5,18 @@
 * [File structure](#file-structure)
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
+Web application for browsing, reviewing, rating and cataloging books. 
+
 	
 ## Technologies
 Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+* Node.js version: 16.X
+* npm version: 7.24
+* React version: 17
 
+## Setup
+Using VisualCode run backend and frontend (editable file for startup is .vscode\launch.json).
+Using two instaces of PowerShell start backend with "node app.js" and frontend with "npm start".
 
 ## File structure
 
